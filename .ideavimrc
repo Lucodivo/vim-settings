@@ -1,0 +1,64 @@
+" ====== Instructions =====
+" In IntelliJ 
+"   go to Settings > Plugins > Marketplace
+"   install IdeaVim
+"   click IdeaVim 'V' in the lower right corner of the IDE
+"   choose Create ~/.ideavim
+"   delete everything in .ideavim
+"   paste: source ~/AppData/Local/nvim/.ideavimrc
+"               or wherever this file is located on your device
+
+set number
+set relativenumber
+
+let tabstop=2
+let softtabstop=2
+let shiftwidth=2
+
+let scrolloff=8
+
+set nohlsearch
+set incsearch
+
+let mapleader=" "
+
+"" map - map a new key pattern to an existing key pattern
+"" noremap - ^ no recursion, new key patterns are only matched with standard vim motions
+"" nnoremap - ^ new key pattern is only valid for normal mode
+
+"" move selected region up/down
+vnoremap J :action MoveStatementDown<CR>
+vnoremap K :action MoveStatementUp<CR>
+
+"" concat current line with next but don't move cursor
+nnoremap J mzJ`z
+
+"" jump up/down but cursor stays in middle
+nnoremap <C-u> <C-u>zz
+nnoremap <C-d> <C-d>zz
+
+"" search terms stay in middle
+nnoremap n nzz
+nnoremap N Nzz
+
+"" paste over selection without adding replaced text to yank buffer
+xnoremap <leader>p "_dP
+
+"" yank to system clipboard
+nnoremap <leader>y "+y
+vnoremap <leader>y "+y
+nnoremap <leader>Y "+Y
+
+"" delete text without adding to yank buffer
+nnoremap <leader>d "_d
+vnoremap <leader>d "_d
+
+"" format file
+nnoremap <leader>f :action ReformatCode<CR>
+
+"" quick fix hot keys
+nnoremap <C-k> :action GotoPreviousError<CR>
+nnoremap <C-j> :action GotoNextError<CR>
+
+"" replace word curor is on
+nnoremap <leader>s :action RenameElement<CR>
