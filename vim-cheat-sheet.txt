@@ -6,6 +6,15 @@ Visual (selection) - v|V|<C-v> to enter Visual|Visual-Line|Visual-Block mode
 Command (:commands) - : to enter
 Explorer (file explorer) - :Ex from Command mode
 
+-- Helpful Commands --
+  :nmap|vmap - view custom map for normal|visual mode
+    :nmap <leader> - for custom maps starting with <leader>
+    :verbose nmap - also display where mapping
+  :Telescope keymaps - searchable view of currently loaded keymaps
+  :h - open help buffer
+    :h {command} - open help buffer at command documentation
+      :h bd - open help buffer at "unload buffer" command 
+
 -- Commands --
 = General =
 	n<command> where n is an integer - perform <command> n times
@@ -60,6 +69,7 @@ Explorer (file explorer) - :Ex from Command mode
   gd|gD - mobe to local|global declaration
   f{c}|t{c}|F{c}|T{c} - move to|before the next|prev instance of character {c} on line
     ;|, - repeat action forward|back
+  % - jump to associated brace
 
 
 = Visual =

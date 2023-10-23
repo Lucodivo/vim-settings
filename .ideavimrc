@@ -7,6 +7,7 @@
 "   delete everything in .ideavim
 "   paste: source ~/AppData/Local/nvim/.ideavimrc
 "               or wherever this file is located on your device
+"   Install Relative Line Numbers
 
 set number
 set relativenumber
@@ -62,3 +63,9 @@ nnoremap <C-j> :action GotoNextError<CR>
 
 "" replace word curor is on
 nnoremap <leader>s :action RenameElement<CR>
+
+" right click and select Appearance > Show Line Numbers
+noremap <leader>- :action ToggleDistractionFreeMode<CR>
+
+noremap <leader>sf :action GotoFile<CR>
+noremap <leader>sw :action SearchEverywhere<CR>

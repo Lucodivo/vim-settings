@@ -1,4 +1,7 @@
 vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
+vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
 -- open explorer
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
@@ -34,17 +37,11 @@ vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 -- format file
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
+-- replace word curor is on
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
 -- quick fix hot keys
 vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
-
--- replace word curor is on
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-
--- source lua file for neovim
-vim.keymap.set("n", "<leader><leader>", function()
-  vim.cmd("so")
-end)
-
