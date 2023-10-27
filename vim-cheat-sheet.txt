@@ -1,3 +1,7 @@
+-- Starting Notes --
+The '|' character is used in this documentation as 'or' and does not ever represent a key stroke.
+  (for completeness the '|' keystroke represents a column and will take you to the nth column)
+
 -- Entering Modes --
 Normal (navigation) - initial mode - <Esc>|<C+[>|<C+c>
 Insert (typing) - i|a to enter before|after selection
@@ -33,7 +37,8 @@ Explorer (file explorer) - :Ex from Command mode
   + - move to the beginning of the next line
 	y|p - copy|paste to|from neovim clipboard
 	"+y|"+p - copy|paste to|from system clipboard
-	x - delete character
+	x|X - delete character on|before cursor
+  s|S - delete character|lines and enter insert mode
 	r - replace character
 	u|<C-r> - undo|redo
 	o|O - insert line below|above current line, enter Insert mode
@@ -56,11 +61,12 @@ Explorer (file explorer) - :Ex from Command mode
 	  ?{s} \c|?{s} \C - search case insentive|sensitive
 	#|* - search back|forward for word under cursor
   N|n - move to next search result
-  <C-w{}> - where {} is...
+  <C-w>{} - where {} is...
 				s|v - split window horizontally|vertically
 				w - switch between windows
 				q - close window
 				h|j|k|l - switch to window to left|down|up|right
+        <C-R> - swap windows in a split
   <C-z> - minimize NeoVim
 	gt|gT - move to next/previous tab
   {#}gt - move to {#} index tab	
@@ -70,6 +76,20 @@ Explorer (file explorer) - :Ex from Command mode
   f{c}|t{c}|F{c}|T{c} - move to|before the next|prev instance of character {c} on line
     ;|, - repeat action forward|back
   % - jump to associated brace
+  <<|>> - indent left|right
+  <C-a|x> - increment/decriment number
+  gn - search forward for the next sequence matching the current seach term
+  aw|aW - select a word, including whitespace | and symbols
+  iw|iW - select a word, excluding whitespace | but including symbols
+  as|is - ^ but a sentence
+  ap|ip - ^ but a paragraph
+  a[|a]|i[|i] - ^ but a [] block
+  a(|a)|ab|i(|i)|ib ^ but a () block
+  a<|a>|i<|i> - ^ but a <> block
+  at|at - ^ but a <{}></{}> tag block
+  a{|a}|aB|i{|i}|iB - ^ but a {} block
+  a"|a'|a`|i"|i'|i` - ^ but between "|'|`
+  <C-]> - jump to associated tag in :help (follow the link)
 
 
 = Visual =
@@ -108,13 +128,46 @@ Explorer (file explorer) - :Ex from Command mode
   :tabedit {filename} - open file as buffer in new tab
 	:tabs - list all open tabs
   :tabclose - close current tab
+  :reg - view the values in the stored in the registers
+  :put = - paste what is in the = expression register
 
-= Macros and Registers =
-  qa - start recording a macro in register 'a'
+
+= Macros, Yanking and Registers =
+  q{a-z} - start recording a macro by replacing register {a-z}
   q - stop recording a macro
-  @a - execute macro stored in register 'a'
+  @{a-z} - execute macro stored in register {a-z}
+  q{A-Z} - start recording a macro by appending to register {a-z}
   " - access a specific register
-  "ay - yank into register 'a'
+  "{a-z}y - yank by replacing register {a-z}
+  "{A-Z}y - yank by appending to register {a-z}
+  "{}p - paste whatever is in register {}
+* Macros record a sequence of key presses that are stored in a register.
+* Yanking is copying characters into a register.
+* At the end of the day macros and yanking simply copies a series of keys to a register.
+  * You can execute a register from yanked characters. 
+  * You can paste a register from a recorded macro.
+* You can view the values stored in your registers at any time with command :regj
+* In insert mode you can use <C-r>{} to paste the {} register
+* Register types:
+  * {a-z} registers are manipulated only explicitly by the user.
+  * " register is called the "unnamed" register and stores whatever was last yanked, deleted, or changed even if we specified a specific register, it still goes to the unnamed register as well.
+  * +|* registers are system clipboards 
+  * 0 register stores the last yanked value
+  * {1-9} registers stores the last 9 deletes or changes in order of newest to oldest (the 10th oldest is simply dropped)
+  * /|? register holds the search text from /|? commands
+  * . register holds the last inserted text
+  * : register stores the last command ran in command mode
+  * = register holds expression calculations performed with "=1+1 in normal mode or <C-r>=1+1 in insert mode
+  * % register holds the name of the file associated to the current buffer
+  * # register holds the name of the file associated to the buffer before focusing on the current buffer.
+  * - register that holds the last delete that was smaller than a single line (no <CR>)
+  * _ register is the black hole register. Anything put into it is gone forever. Pasting it shows nothing.
+  * ~ register stores the text from the last drag and drop from a separate window into vim
+
+
+= Insert =
+  <C-R>{} - paste what's in register {}
+  <C-v><C-{}> - create a character that represents <C-{}>, ex: 
 
 = Workflow examples =
 yyp
@@ -125,3 +178,49 @@ V:s/{s1}/{s2}/g
   - For a single line, replace all instances of string {s1} with {s2}
 :%bd|e#
   - Close all buffers but current
+/val<CR>cgnvar<ESC>...
+  - search for text "val" change next occurrence to "var", repeat 3 times
+q{a-z}cwballs<ESC>qjV5j:norm @{a-z}
+  - record a macro on register {a-z} that changes the first word to "balls", go down one line, go into visual line mode and highlight 5 more rows below, go into command mode and execute the recorded macro on each line
+qqddq:g/TODO/norm @q
+  - record a macro on register q that deletes the line, enter command mode, and file globally execute that macro on every line that contains the word "TODO"
+
+
+
+
+
+
+
+= DOCUMENTATION TODO =
+- marks
+- regex
+- expression register
+
+
+
+
+
+
+
+
+
+
+== TESTING GROUNDS ==
+
+func seymorebutts {
+  let curly = nothing
+  (
+  let parens = nothing
+  <
+  let compare = nothing
+  <a>
+  let tag = nothing
+  </a>
+  let compare = nothing
+  >
+  let parens = nothing
+  )
+  let curly = nothing
+}
+
+" double 'single `back` single' double "
