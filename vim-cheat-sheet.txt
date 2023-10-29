@@ -62,10 +62,11 @@ Explorer (file explorer) - :Ex from Command mode
 	#|* - search back|forward for word under cursor
   N|n - move to next search result
   <C-w>{} - where {} is...
-				s|v - split window horizontally|vertically
-				w - switch between windows
-				q - close window
-				h|j|k|l - switch to window to left|down|up|right
+        s|v - split window horizontally|vertically
+        w - switch between windows
+        q - close window
+        h|j|k|l - switch to window to left|down|up|right
+        <C-o> - close all but current window
         <C-R> - swap windows in a split
   <C-z> - minimize NeoVim
 	gt|gT - move to next/previous tab
@@ -90,6 +91,9 @@ Explorer (file explorer) - :Ex from Command mode
   a{|a}|aB|i{|i}|iB - ^ but a {} block
   a"|a'|a`|i"|i'|i` - ^ but between "|'|`
   <C-]> - jump to associated tag in :help (follow the link)
+  g; - go to last edit of buffer
+  <C-e>|<C-y> - scroll down|up one line
+  <C-^|6> - go to alternate file (previously edited file)
 
 
 = Visual =
@@ -106,7 +110,7 @@ Explorer (file explorer) - :Ex from Command mode
 = Command =
   :h - open help buffer
     :h {command} - open help buffer at command documentation
-      :h bd - open help buffer at "unload buffer" command 
+      :h bd - open help buffer at "unload buffer" command
   :q|:q! - quit|force quit
 	:e <absolute file path> - open file in buffer, enter Normal mode
 	:e <absolute directory path> - open directory in Explorer mode
@@ -120,16 +124,21 @@ Explorer (file explorer) - :Ex from Command mode
     /foo - for regex foo
     /bar - to replace with
     /g - all lines at once (gc is all lines but each requires confirmation)
+  :%y - yank all lines
   :bd|:bn|:bp - buffer delete|next|previous
   :set {x} - set {x}
 				{ic}|{noic} - ignore case, case sensitive
   :sp|:vsp {file name} - open file in a horizontal|vertical split buffer
 	:ls - list all open buffers
-  :tabedit {filename} - open file as buffer in new tab
+  :tabe - open a new tab
+    {filename} - open file as buffer in new tab
 	:tabs - list all open tabs
-  :tabclose - close current tab
+  :tabc - close current tab
+  :tabo - close all other tabs
+  :tabn|:tabp - go to next|prev tab
   :reg - view the values in the stored in the registers
   :put = - paste what is in the = expression register
+  :on - make the current window the only one on screen
 
 
 = Macros, Yanking and Registers =
@@ -164,20 +173,26 @@ Explorer (file explorer) - :Ex from Command mode
   * _ register is the black hole register. Anything put into it is gone forever. Pasting it shows nothing.
   * ~ register stores the text from the last drag and drop from a separate window into vim
 
+= Marks =
+  m{a-z}|m{A-Z} - set a buffer|global mark {a-z}|{A-Z}
+  '{a-z}|'{A-Z} - go to the begging of line with a buffer|global mark {a-z}|{A-Z}
+  `{a-z}|`{A-Z} - go to the exact position of a buffer|global mark {a-z}|{A-Z}
+* Marks allow you to record your current position to return to later
+* Each buffer gets its own set of {a-z} marks, inaccessible from other buffers.
+* {A-Z} are global marks, accessible from any buffer.
 
 = Insert =
   <C-R>{} - paste what's in register {}
   <C-v><C-{}> - create a character that represents <C-{}>, ex: 
+  <C-u> - undo
+  <C-n>|<C-p> - autocomplete next|prev
+  <C-x><C-f> - autocomplete file on system
 
 = Workflow examples =
 yyp
   - copy line and post it below
-ddp/ddkP
-  - move line down/up
 V:s/{s1}/{s2}/g
   - For a single line, replace all instances of string {s1} with {s2}
-:%bd|e#
-  - Close all buffers but current
 /val<CR>cgnvar<ESC>...
   - search for text "val" change next occurrence to "var", repeat 3 times
 q{a-z}cwballs<ESC>qjV5j:norm @{a-z}
@@ -195,6 +210,7 @@ qqddq:g/TODO/norm @q
 - marks
 - regex
 - expression register
+
 
 
 

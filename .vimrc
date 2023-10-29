@@ -1,14 +1,21 @@
 set number
 set relativenumber
-set nohlsearch
-set incsearch
 
 let tabstop=2
 let softtabstop=2
 let shiftwidth=2
+
+set nohlsearch
+set incsearch
+set showcmd
+
 let scrolloff=8
 
 let mapleader=" "
+
+" Netrw
+let g:netrw_banner=0 " disable banner
+let g:netrw_liststyle=3 " tree view
 
 "" map - map a new key pattern to an existing key pattern
 "" noremap - ^ no recursion, new key patterns are only matched with standard vim motions
@@ -37,3 +44,8 @@ nnoremap <leader>Y "+Y
 nnoremap <leader>d "_d
 vnoremap <leader>d "_d
 
+"" concat current line with next but don't move cursor
+nnoremap J mzJ`z
+
+nnoremap <silent> <space> <nop>
+vnoremap <silent> <space> <nop>

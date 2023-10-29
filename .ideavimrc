@@ -8,12 +8,13 @@
 "   paste: source ~/AppData/Local/nvim/.ideavimrc
 "               or wherever this file is located on your device
 "   Install Relative Line Numbers
-"   
-"   Resources:
-"   IdeaVim actionlist - https://gist.github.com/zchee/9c78f91cc5ad771c1f5d
+"
+"   If making edits, press shift+ctrl+o while ~/.ideavimrc is open in IDE
 
 "" grab standard settings
 source ~/AppData/Local/nvim/.vimrc
+
+set hlsearch
 
 "" move selected region up/down
 vnoremap J :action MoveStatementDown<CR>
@@ -30,11 +31,27 @@ nnoremap <C-j> :action GotoNextError<CR>
 nnoremap <leader>rw :action RenameElement<CR>
 
 " right click and select Appearance > Show Line Numbers
-noremap <leader>- :action ToggleDistractionFreeMode<CR>
+nnoremap <leader>_ :action TogglePresentationMode<CR>
+nnoremap <leader>- :action ToggleZenMode<CR>
+nnoremap <leader>h :action HideAllWindows<CR>
+nnoremap <leader>H :action ToggleDistractionFreeMode<CR>
 
-noremap <leader>sf :action GotoFile<CR>
-noremap <leader>sw :action SearchEverywhere<CR>
-noremap <leader>su :action FindUsages<CR>
-noremap <leader>rf :action RenameFile<CR>
+nnoremap <leader>sf :action GotoFile<CR>
+nnoremap <leader>sg :action SearchEverywhere<CR>
+nnoremap <leader>su :action FindUsages<CR>
+nnoremap <leader>rf :action RenameFile<CR>
+nnoremap <leader>? :action RecentFiles<CR>
+nnoremap <leader><space> :action RecentFiles<CR>
+nnoremap <C-w><C-q> :action CloseEditor<CR>
+nnoremap <C-w>q :action CloseEditor<CR>
+nnoremap <C-=> :action EditorIncreaseFontSize<CR>
+nnoremap <C--> :action EditorDecreaseFontSize<CR>
 
 Plug 'machakann/vim-highlightedyank'
+
+" Standard Keymaps
+" ctrl+` for changing viewing modes
+"
+" Notes
+" list of IntelliJ actions can be viewed with command :actionlist
+" Tool windows can be opened through RecentFiles, or ctrl+tab
