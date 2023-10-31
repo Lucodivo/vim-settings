@@ -1,9 +1,11 @@
+set nocompatible
 set number
 set relativenumber
+set autoread
 
 let tabstop=2
-let softtabstop=2
-let shiftwidth=2
+set shiftwidth=0   " If 0, then uses value of 'tabstop'
+set softtabstop=-1 " If negative, then uses 'shiftwidth' (which can use 'tabstop')et shiftwidth=2
 
 set nohlsearch
 set incsearch
@@ -12,10 +14,6 @@ set showcmd
 let scrolloff=8
 
 let mapleader=" "
-
-" Netrw
-let g:netrw_banner=0 " disable banner
-let g:netrw_liststyle=3 " tree view
 
 "" map - map a new key pattern to an existing key pattern
 "" noremap - ^ no recursion, new key patterns are only matched with standard vim motions
@@ -49,3 +47,10 @@ nnoremap J mzJ`z
 
 nnoremap <silent> <space> <nop>
 vnoremap <silent> <space> <nop>
+
+"ideaVim ignore
+"" register destination of explicit count j/k movements onto the jumplist
+"" and for single j/k movements, allow ease of navigation through wrapped text
+nnoremap <expr> k (v:count > 1 ? "km'" : "gk")
+nnoremap <expr> j (v:count > 1 ? "jm'" : "gj")
+"ideaVim ignore end

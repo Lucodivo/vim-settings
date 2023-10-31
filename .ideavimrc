@@ -35,6 +35,9 @@ nnoremap <leader>_ :action TogglePresentationMode<CR>
 nnoremap <leader>- :action ToggleZenMode<CR>
 nnoremap <leader>h :action HideAllWindows<CR>
 nnoremap <leader>H :action ToggleDistractionFreeMode<CR>
+nnoremap <leader>l :action ChangeToolWindowLayout<CR>
+nnoremap <leader>L :action StoreNewLayout<CR>
+nnoremap <leader>e :action CloseAllEditorsButActive<CR>
 
 nnoremap <leader>sf :action GotoFile<CR>
 nnoremap <leader>sg :action SearchEverywhere<CR>
@@ -55,3 +58,4 @@ Plug 'machakann/vim-highlightedyank'
 " Notes
 " list of IntelliJ actions can be viewed with command :actionlist
 " Tool windows can be opened through RecentFiles, or ctrl+tab
+" set "left margin to distraction free mode" to 0

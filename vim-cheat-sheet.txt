@@ -1,6 +1,6 @@
--- Starting Notes --
-The '|' character is used in this documentation as 'or' and does not ever represent a key stroke.
-  (for completeness the '|' keystroke represents a column and will take you to the nth column)
+-- Documentation Notes --
+The '|' character is often used in this documentation as 'or' and almost never represents the '|' character
+        - if not obvious, hit some buttons and find out *shrugs*
 
 -- Entering Modes --
 Normal (navigation) - initial mode - <Esc>|<C+[>|<C+c>
@@ -18,12 +18,13 @@ Explorer (file explorer) - :Ex from Command mode
   :h - open help buffer
     :h {command} - open help buffer at command documentation
       :h bd - open help buffer at "unload buffer" command 
+  :set all
 
 -- Commands --
 = General =
-	n<command> where n is an integer - perform <command> n times
-  <Esc>|<C-[> - enter normal mode
-  home|end - move to beginning|end of line
+        n<command> where n is an integer - perform <command> n times
+        <Esc>|<C-[>|<C-c> - enter normal mode
+        home|end - move to beginning|end of line
 
 = Normal =
 	i|a - insert mode before|after selection
@@ -68,6 +69,9 @@ Explorer (file explorer) - :Ex from Command mode
         h|j|k|l - switch to window to left|down|up|right
         <C-o> - close all but current window
         <C-R> - swap windows in a split
+        J|K|H|L - move window to the very far bottom|top|left|right
+                - good for rotating a vertical split to a horizontal split
+        x - swap two windows in a split
   <C-z> - minimize NeoVim
 	gt|gT - move to next/previous tab
   {#}gt - move to {#} index tab	
@@ -79,7 +83,7 @@ Explorer (file explorer) - :Ex from Command mode
   % - jump to associated brace
   <<|>> - indent left|right
   <C-a|x> - increment/decriment number
-  gn - search forward for the next sequence matching the current seach term
+  gn|gN - search forward|back for the next sequence matching the current seach term
   aw|aW - select a word, including whitespace | and symbols
   iw|iW - select a word, excluding whitespace | but including symbols
   as|is - ^ but a sentence
@@ -91,10 +95,16 @@ Explorer (file explorer) - :Ex from Command mode
   a{|a}|aB|i{|i}|iB - ^ but a {} block
   a"|a'|a`|i"|i'|i` - ^ but between "|'|`
   <C-]> - jump to associated tag in :help (follow the link)
-  g; - go to last edit of buffer
+  g;|g, - go to older|newer position on change list
   <C-e>|<C-y> - scroll down|up one line
   <C-^|6> - go to alternate file (previously edited file)
-
+  & - repeats the last substitute
+  g& - repeats last substitute with last search patern on all lines of the same file
+  gi - enter insert mode where insert mode was last exited within the current buffer
+  zf|zv - define fold, open fold
+  <C-o>|<C-i> - go to older|newer positions on jump list
+  gf - go to file under cursor
+  gw{motion} - format lines that a {motion} moves over
 
 = Visual =
   y - copy selection
@@ -106,6 +116,7 @@ Explorer (file explorer) - :Ex from Command mode
 	aw - select word
 	>|< - shift selection right|left
 	~ - swap lower/upper case
+  g<C-a>|g<C-x> - add/subract n for the nth selected row to the first number in each selection.
 
 = Command =
   :h - open help buffer
@@ -127,7 +138,7 @@ Explorer (file explorer) - :Ex from Command mode
   :%y - yank all lines
   :bd|:bn|:bp - buffer delete|next|previous
   :set {x} - set {x}
-				{ic}|{noic} - ignore case, case sensitive
+        {ic}|{noic} - ignore case, case sensitive
   :sp|:vsp {file name} - open file in a horizontal|vertical split buffer
 	:ls - list all open buffers
   :tabe - open a new tab
@@ -139,7 +150,8 @@ Explorer (file explorer) - :Ex from Command mode
   :reg - view the values in the stored in the registers
   :put = - paste what is in the = expression register
   :on - make the current window the only one on screen
-
+  :changes - list changes to buffer
+  :ju - list jumps
 
 = Macros, Yanking and Registers =
   q{a-z} - start recording a macro by replacing register {a-z}
@@ -173,20 +185,67 @@ Explorer (file explorer) - :Ex from Command mode
   * _ register is the black hole register. Anything put into it is gone forever. Pasting it shows nothing.
   * ~ register stores the text from the last drag and drop from a separate window into vim
 
-= Marks =
+= Mark-Motions =
   m{a-z}|m{A-Z} - set a buffer|global mark {a-z}|{A-Z}
   '{a-z}|'{A-Z} - go to the begging of line with a buffer|global mark {a-z}|{A-Z}
   `{a-z}|`{A-Z} - go to the exact position of a buffer|global mark {a-z}|{A-Z}
+  '[|`[|']|'] - go to last edit in buffer (variations take you do different sections)
+  `. - position where last change was made
+  '" - go to cursor position when last exited current buffer
 * Marks allow you to record your current position to return to later
 * Each buffer gets its own set of {a-z} marks, inaccessible from other buffers.
 * {A-Z} are global marks, accessible from any buffer.
+* {0-9} marks are not set by the user and represent file locations when vim was last exited
+
+= Jump-Motions =
+  <C-o>|<C-i> - go to older|newer position in jump list
+  :ju - list jumps
+  m'|m` - explicitly add jump to jump list
+* A jump includes many commands that move the cursor several lines away.
+* The jump list contains up to the last 100 jumps performed within a window.
+        * Each window has its own jump list
 
 = Insert =
   <C-R>{} - paste what's in register {}
   <C-v><C-{}> - create a character that represents <C-{}>, ex: 
-  <C-u> - undo
+  <C-u> - undo all inserts to current line or delete all text if nothing has been inserted
   <C-n>|<C-p> - autocomplete next|prev
   <C-x><C-f> - autocomplete file on system
+  <C-a> - insert previously inserted text
+  <C-h>|<C-w> - delete character|word before
+  <tab>|<C-i> - inserts tab
+  <C-t>|<C-d> - insert|undo tab to beginning of the line
+  <C-e>|<C-y> - insert the character below|above the line
+  <C-o> - execute one command and return to insert mode
+
+= Patterns =
+  [0-9] - any digit
+  [^x] - not x
+  . - any character
+  \s|\S - whitespace|non-whitespace character (<space> or <tab>)
+  \d|\D - digit | non-digit character
+  \x|\X|\o|\O for hex|non-hex|octal|non-octal character
+  \w|\W - word|non-word character
+  \a|\A - matches any alphabetic|non-alphabetic character
+  \l|\L|\h|\H - lowercase|non-lowercase|uppercase|non-uppercase character
+  x* - any amount of x
+  x\+ - one or more of x
+  x\? - one or none
+  x\{3,7} - 3 to 7 x's
+  ^|$ - start|end of line
+  \<|\> - beginning|end of word
+  ~ - last substitute
+  \t - <tab>
+  \(\) - a match inside \(\) is captured inside \1 \2 \3 to be used in same or following patterns (like for substitution)
+  \1|...|\3 - string captured by first|...|ninth \(\) in pattern
+  [] - any character inside []
+  \c|\C - ignore|match case
+* patterns can be ORed together with \| (an escaped pipe character)
+        * /one\|two\|three - will match with one two or three
+* patterns can be ANDed together with \&
+        * /foobar\&... - will take the first three characters of a pattern that mathes foobar
+* pieces of a pattern can be used as a part the same or following patterns
+        * :s/\(foo\)bar\(baz\)\1\2 - matches with foobarbazfoobaz
 
 = Workflow examples =
 yyp
@@ -199,24 +258,6 @@ q{a-z}cwballs<ESC>qjV5j:norm @{a-z}
   - record a macro on register {a-z} that changes the first word to "balls", go down one line, go into visual line mode and highlight 5 more rows below, go into command mode and execute the recorded macro on each line
 qqddq:g/TODO/norm @q
   - record a macro on register q that deletes the line, enter command mode, and file globally execute that macro on every line that contains the word "TODO"
-
-
-
-
-
-
-
-= DOCUMENTATION TODO =
-- marks
-- regex
-- expression register
-
-
-
-
-
-
-
 
 
 
@@ -238,5 +279,9 @@ func seymorebutts {
   )
   let curly = nothing
 }
+
+
+
+
 
 " double 'single `back` single' double "
