@@ -7,8 +7,7 @@ Normal (navigation) - initial mode - <Esc>|<C+[>|<C+c>
 Insert (typing) - i|a to enter before|after selection
 Replace (typing) - R
 Visual (selection) - v|V|<C-v> to enter Visual|Visual-Line|Visual-Block mode
-Command (:commands) - : to enter
-Explorer (file explorer) - :Ex from Command mode
+Command-line (:) - : to enter
 
 -- Helpful Commands --
   :nmap|vmap - view custom map for normal|visual mode
@@ -45,7 +44,7 @@ Explorer (file explorer) - :Ex from Command mode
 	o|O - insert line below|above current line, enter Insert mode
   I|A - move cursor to beginning|end of line, enter Insert mode
   v|V|<C-v> - enter Visual|Visual-Line|Visual-Block mode
-	: - enter Command mode
+	: - enter Command-line mode
 	yy|yw|y$ - yanks line|word|cursor-to-end-of-line
   H|M|L - move cursor top|middle|bottom of screen
 	(|) - cursor to start of previous|next "sentence"
@@ -73,7 +72,7 @@ Explorer (file explorer) - :Ex from Command mode
                 - good for rotating a vertical split to a horizontal split
         x - swap two windows in a split
   <C-z> - minimize NeoVim
-	gt|gT - move to next/previous tab
+  gt|gT - move to next/previous tab
   {#}gt - move to {#} index tab	
   {#}G|{#}gg - move to {#} line
   cw|cb|C - delete to end|beginning of word|end of line, and enter insert mode
@@ -101,7 +100,9 @@ Explorer (file explorer) - :Ex from Command mode
   & - repeats the last substitute
   g& - repeats last substitute with last search patern on all lines of the same file
   gi - enter insert mode where insert mode was last exited within the current buffer
-  zf|zv - define fold, open fold
+  zf|zv|zd - define|open/close|delete fold
+  zD|zE - eliminate all folds recursively|in window
+  zR|zM - open|close all folds
   <C-o>|<C-i> - go to older|newer positions on jump list
   gf - go to file under cursor
   gw{motion} - format lines that a {motion} moves over
@@ -117,8 +118,9 @@ Explorer (file explorer) - :Ex from Command mode
 	>|< - shift selection right|left
 	~ - swap lower/upper case
   g<C-a>|g<C-x> - add/subract n for the nth selected row to the first number in each selection.
+  I|A - block insert|append
 
-= Command =
+= Command-line =
   :h - open help buffer
     :h {command} - open help buffer at command documentation
       :h bd - open help buffer at "unload buffer" command
@@ -152,6 +154,13 @@ Explorer (file explorer) - :Ex from Command mode
   :on - make the current window the only one on screen
   :changes - list changes to buffer
   :ju - list jumps
+  :his - print history of last entered commands
+  <C-r>{} - insert contents in register {}
+  <C-r><C-w>|<C-r><C-l> - insert word|line under cursor
+  :g/{patter}/{cmd} - execute {cmd} on all lines where {pattern} matches
+  :g!/{patter}/{cmd} - execute {cmd} on all lines where {pattern} does not match
+* Many command can be appended together with | 
+       * :ju | changes - view the jumplist and changes in the same list
 
 = Macros, Yanking and Registers =
   q{a-z} - start recording a macro by replacing register {a-z}
@@ -177,7 +186,7 @@ Explorer (file explorer) - :Ex from Command mode
   * {1-9} registers stores the last 9 deletes or changes in order of newest to oldest (the 10th oldest is simply dropped)
   * /|? register holds the search text from /|? commands
   * . register holds the last inserted text
-  * : register stores the last command ran in command mode
+  * : register stores the last command ran in command-line mode
   * = register holds expression calculations performed with "=1+1 in normal mode or <C-r>=1+1 in insert mode
   * % register holds the name of the file associated to the current buffer
   * # register holds the name of the file associated to the buffer before focusing on the current buffer.
@@ -248,19 +257,16 @@ Explorer (file explorer) - :Ex from Command mode
         * :s/\(foo\)bar\(baz\)\1\2 - matches with foobarbazfoobaz
 
 = Workflow examples =
-yyp
-  - copy line and post it below
 V:s/{s1}/{s2}/g
   - For a single line, replace all instances of string {s1} with {s2}
 /val<CR>cgnvar<ESC>...
   - search for text "val" change next occurrence to "var", repeat 3 times
 q{a-z}cwballs<ESC>qjV5j:norm @{a-z}
-  - record a macro on register {a-z} that changes the first word to "balls", go down one line, go into visual line mode and highlight 5 more rows below, go into command mode and execute the recorded macro on each line
+  - record a macro on register {a-z} that changes the first word to "balls", go down one line, go into visual line mode and highlight 5 more rows below, go into command-line mode and execute the recorded macro on each line
 qqddq:g/TODO/norm @q
-  - record a macro on register q that deletes the line, enter command mode, and file globally execute that macro on every line that contains the word "TODO"
-
-
-
+  - record a macro on register q that deletes the line, enter command-line mode, and file globally execute that macro on every line that contains the word "TODO"
+:%s/\(.\)/\u\1
+  - for the whole buffer, capitalize the first non-whitespace character
 
 == TESTING GROUNDS ==
 
@@ -279,9 +285,6 @@ func seymorebutts {
   )
   let curly = nothing
 }
-
-
-
 
 
 " double 'single `back` single' double "

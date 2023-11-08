@@ -1,7 +1,5 @@
-set nocompatible
 set number
 set relativenumber
-set autoread
 
 let tabstop=2
 set shiftwidth=0   " If 0, then uses value of 'tabstop'
@@ -26,10 +24,6 @@ nnoremap J mzJ`z
 nnoremap <C-u> <C-u>zz
 nnoremap <C-d> <C-d>zz
 
-"" search terms stay in middle
-nnoremap n nzz
-nnoremap N Nzz
-
 "" paste over selection without adding replaced text to yank buffer
 xnoremap <leader>p "_dP
 
@@ -38,19 +32,24 @@ nnoremap <leader>y "+y
 vnoremap <leader>y "+y
 nnoremap <leader>Y "+Y
 
-"" delete text without adding to yank buffer
+"" delete text to blackhole register
 nnoremap <leader>d "_d
 vnoremap <leader>d "_d
+
+"" delete character to blackhole register
+nnoremap x "_x
+nnoremap <leader>x x
 
 "" concat current line with next but don't move cursor
 nnoremap J mzJ`z
 
-nnoremap <silent> <space> <nop>
-vnoremap <silent> <space> <nop>
 
-"ideaVim ignore
+
+"" TODO: fix these for intellij and vscode
+""nnoremap <silent> <space> <nop>
+""vnoremap <silent> <space> <nop>
+
 "" register destination of explicit count j/k movements onto the jumplist
 "" and for single j/k movements, allow ease of navigation through wrapped text
-nnoremap <expr> k (v:count > 1 ? "km'" : "gk")
-nnoremap <expr> j (v:count > 1 ? "jm'" : "gj")
-"ideaVim ignore end
+"" nnoremap <expr> k (v:count > 1 ? "km'" : "gk")
+"" nnoremap <expr> j (v:count > 1 ? "jm'" : "gj")
