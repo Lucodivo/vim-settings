@@ -1,13 +1,15 @@
 " ====== Instructions =====
 " In IntelliJ 
 "   go to Settings > Plugins > Marketplace
-"   install IdeaVim
+"   install IdeaVim from Marketplace
 "   click IdeaVim 'V' in the lower right corner of the IDE
 "   choose Create ~/.ideavim
 "   delete everything in .ideavim
 "   paste: source ~/AppData/Local/nvim/.ideavimrc
 "               or wherever this file is located on your device
-"   Install Relative Line Numbers
+"
+"   Ensure the "source ~/AppData/Local/nvim/.vimrc" call below points 
+"   to the .vimrc in the parent directory of this git repository
 "
 "   If making edits, press shift+ctrl+o while ~/.ideavimrc is open in IDE
 
@@ -26,14 +28,13 @@ nnoremap <leader>rw :action RenameElement<CR>
 "" Quick fix hot keys
 nnoremap <C-k> :action GotoPreviousError<CR>
 nnoremap <C-j> :action GotoNextError<CR>
-
+nnoremap <leader>e :action ShowErrorDescription<CR>
 
 "" Toggle IDE window configurations
 nnoremap <leader>h :action HideAllWindows<CR>
 nnoremap <leader>H :action ToggleDistractionFreeMode<CR>
 nnoremap <leader>l :action ChangeToolWindowLayout<CR>
 nnoremap <leader>L :action StoreNewLayout<CR>
-nnoremap <leader>e :action CloseAllEditorsButActive<CR>
 nnoremap <leader>- :action ToggleZenMode<CR>
 nnoremap <leader>_ :action TogglePresentationMode<CR>
 
@@ -70,15 +71,14 @@ nnoremap za :action CollapseSelection<CR>
 "" Search
 nnoremap <leader>sg :action SearchEverywhere<CR>
 nnoremap <leader>su :action FindUsages<CR>
+nnoremap <leader>ss :action ActivateFindToolWindow<CR>
 nnoremap n nzz:action ExpandRegion<CR>
 nnoremap N Nzz:action ExpandRegion<CR>
 nnoremap <leader>sw :action CheckinProject<CR>
 
 "" Comments
 nnoremap <C-/> :action CommentByLineComment<CR>
-vnoremap <C-/> :action CommentByLineComment<CR>
-nnoremap <leader><C-/> :action CommentByBlockComment<CR>
-vnoremap <leader><C-/> :action CommentByBlockComment<CR>
+vnoremap <C-/> :action CommentByBlockComment<CR>
 
 "" Multiple cursors (requires visual-line mode)
 vnoremap <leader>I :action EditorAddCaretPerSelectedLine<CR>
@@ -87,20 +87,44 @@ vnoremap <leader>A :action EditorAddCaretPerSelectedLine<CR>
 "" Seems redundant, but used to exit multiple cursors
 noremap <C-[> <ESC>
 
-"" Build, Run, Debug
+"" Build, Gradle
 nnoremap <leader>bb :action MakeGradleProject<CR>
 nnoremap <leader>br :action RebuildGradleProject<CR>
 nnoremap <leader>bc :action CleanGradleProject<CR>
-nnoremap <leader>rr :action Run<CR>
-nnoremap <leader>rd :action Debug<CR>
-nnoremap <leader>rc :action Resume<CR>
-nnoremap <leader>rs :action Stop<CR>
+nnoremap <leader>bs :action Android.SyncProject<CR>
 nnoremap <leader>rad :action XDebugger.AttachToProcess<CR>
 nnoremap \\b :action ToggleLineBreakpoint<CR>
 
 "" Changelist
 nnoremap g; :action JumpToLastChange<CR>
 nnoremap g, :action JumpToNextChange<CR>
+
+"" Debugging 
+nnoremap <F8> :action Run<CR>
+nnoremap <F9> :action Debug<CR>
+nnoremap <leader><F9> :action XDebugger.AttachToProcess<CR>
+nnoremap <F10> :action StepInto<CR>
+nnoremap <C-F10> :action Resume<CR>
+nnoremap <F11> :action StepOut<CR>
+nnoremap <C-F11> :action Stop<CR>
+nnoremap <F12> :action StepOver<CR>
+vnoremap <F8> :action Run<CR>
+vnoremap <F9> :action Debug<CR>
+vnoremap <leader><F9> :action XDebugger.AttachToProcess<CR>
+vnoremap <F10> :action StepInto<CR>
+vnoremap <C-F10> :action Resume<CR>
+vnoremap <F11> :action StepOut<CR>
+vnoremap <C-F11> :action Stop<CR>
+vnoremap <F12> :action StepOver<CR>
+inoremap <F8> :action Run<CR>
+inoremap <F9> :action Debug<CR>
+inoremap <leader><F9> :action XDebugger.AttachToProcess<CR>
+inoremap <F10> :action StepInto<CR>
+inoremap <C-F10> :action Resume<CR>
+inoremap <F11> :action StepOut<CR>
+inoremap <C-F11> :action Stop<CR>
+inoremap <F12> :action StepOver<CR>
+
 
 Plug 'machakann/vim-highlightedyank'
 

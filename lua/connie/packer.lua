@@ -4,15 +4,15 @@
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
-	-- Packer can manage itself
-	use 'wbthomason/packer.nvim'
+  -- Packer can manage itself
+  use 'wbthomason/packer.nvim'
 
-  use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.3',
-    -- or                            , branch = '0.1.x',
-    requires = { {'nvim-lua/plenary.nvim'} }
-  }
+  -- Plenary: Telescope dependency
+  use 'nvim-lua/plenary.nvim'
+  -- Telescope: Fuzzy finder 
+  use { 'nvim-telescope/telescope.nvim', tag = '0.1.3', }
 
+  -- color themes
   use ({
     -- 'rose-pine/neovim', as = 'rose-pine',
     -- 'folke/tokyonight.nvim',
@@ -21,27 +21,39 @@ return require('packer').startup(function(use)
     'projekt0n/caret.nvim', config = function() require('caret').setup({}) vim.cmd('colorscheme caret') end
   })
 
+  -- Treesitter: Provides nVim syntax structure for folding, highlighting, text-objects, and more.
   use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
-  use('tpope/vim-fugitive')
-  use('ThePrimeagen/harpoon')
+
+  -- Vim learning game ( VimBeGood command-line command)
   use('ThePrimeagen/vim-be-good')
+
+  -- UndoTree 
   use('mbbill/undotree')
 
-  use {
-    'VonHeikemen/lsp-zero.nvim',
-    branch = 'v3.x',
-    requires = {
-      --- Uncomment these if you want to manage LSP servers from neovim
-      {'williamboman/mason.nvim'},
-      {'williamboman/mason-lspconfig.nvim'},
+  -- rust nvim walkthrough
+  use 'williamboman/mason.nvim'    
+  use 'williamboman/mason-lspconfig.nvim'
 
-      -- LSP Support
-      {'neovim/nvim-lspconfig'},
-      -- Autocompletion
-      {'hrsh7th/nvim-cmp'},
-      {'hrsh7th/cmp-nvim-lsp'},
-      {'L3MON4D3/LuaSnip'},
-    }
-  }
+  -- collection of lsp configurations
+  use 'neovim/nvim-lspconfig' 
+  -- tools to automatically set up lspconfig for rust-analyzer
+  use 'simrat39/rust-tools.nvim'
+
+  -- nvim-dap
+  use 'mfussenegger/nvim-dap'
+
+  -- Completion framework:
+  use 'hrsh7th/nvim-cmp' 
+
+  -- LSP completion source:
+  use 'hrsh7th/cmp-nvim-lsp'
+
+  -- Useful completion sources:
+  use 'hrsh7th/cmp-nvim-lua'
+  use 'hrsh7th/cmp-nvim-lsp-signature-help'
+  use 'hrsh7th/cmp-vsnip'                             
+  use 'hrsh7th/cmp-path'                              
+  use 'hrsh7th/cmp-buffer'                            
+  use 'hrsh7th/vim-vsnip'                             
 
 end)

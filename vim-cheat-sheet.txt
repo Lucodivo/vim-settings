@@ -268,6 +268,17 @@ qqddq:g/TODO/norm @q
 :%s/\(.\)/\u\1
   - for the whole buffer, capitalize the first non-whitespace character
 
+
+== Plugin Commands ==
+:LspInfo
+  - view information about attached LSPs
+:LspInstall
+  - install recommended LSP for current buffer
+:Mason
+  - open mason to install LSPs, DAPs, linters and formatters
+:PackerSync
+  - sync dependencies listed in packer.lua
+
 == TESTING GROUNDS ==
 
 func seymorebutts {

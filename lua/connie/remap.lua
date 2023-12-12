@@ -21,6 +21,14 @@ vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
+vim.keymap.set("n", "<space>", "<nop>", { silent = true})
+
+-- TODO: translate from vimscript
+-- register destination of explicit count j/k movements onto the jumplist
+-- and for single j/k movements, allow ease of navigation through wrapped text
+-- nnoremap <expr> k (v:count > 1 ? "km'" : "gk")
+-- nnoremap <expr> j (v:count > 1 ? "jm'" : "gj")
+
 vim.cmd([[
 function! Scratch()
   split

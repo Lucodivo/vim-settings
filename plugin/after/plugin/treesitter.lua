@@ -2,7 +2,8 @@ require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all" (the five listed parsers should always be installed)
   ensure_installed = { "vimdoc", 
                         "rust", 
-                        "c", 
+                        "toml",
+                        "c",
                         "lua", 
                         "java", 
                         "cpp", 
@@ -32,4 +33,5 @@ require'nvim-treesitter.configs'.setup {
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
   },
+  ident = { enable = true }, 
 }
