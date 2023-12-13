@@ -4,26 +4,75 @@
 "   install IdeaVim from Marketplace
 "   click IdeaVim 'V' in the lower right corner of the IDE
 "   choose Create ~/.ideavim
-"   delete everything in .ideavim
-"   paste: source ~/AppData/Local/nvim/.ideavimrc
-"               or wherever this file is located on your device
+"   delete everything in .ideavim and replace it with everything in the following triple double quotes,
+"       removing the first double quote of each line:
+""" [.ideavimrc header]
+"" after each edit, reloading .ideavimrc settings requires the hotkey shift+ctrl+o while this file is open and in focus
+"
+"" "Include" our .ideavimrc settings from the source control
+"source ~/AppData/Local/nvim/.ideavimrc
+"" Shortcut to edit our .ideavimrc settings in the source control
+"nnoremap \ve :e ~/AppData/Local/nvim/.ideavimrc<CR>
+"" Shortcut to edit *THIS* .ideavimrc file (which is separate from above two files)
+"nnoremap \va :e ~/.ideavimrc<CR>
+"" Shortcut to reload .ideavimrc settings (only works while *THIS* file is open and in focus)
+"nnoremap \vr :action IdeaVim.ReloadVimRc.reload<CR>
+""" [.ideavimrc footer]
+"   [Notes:
+"       - the .ideavimrc should be adjusted the the location of this very file
+"       - reload the vim settings after making this edit with shift+ctrl+o while in .ideavim
+"       - after performing the above \e will open this file for editing and \r will reload the vim settings after any edits
+"   ]
 "
 "   Ensure the "source ~/AppData/Local/nvim/.vimrc" call below points 
 "   to the .vimrc in the parent directory of this git repository
 "
-"   If making edits, press shift+ctrl+o while ~/.ideavimrc is open in IDE
+"   If making edits, press  while ~/.ideavimrc is open in IDE
+"
+"  Standard Keymaps
+"  - ctrl+` - Quick menu for changing visual elements of the IDE
+"  - ctrl+shift+o - Reloads .ideavimrc settings while .ideavimrc is open and in focus (not this files, the one mentioned above!)
+"  - <ESC><ESC> - Will take you out of most tool windows back into the editor
+"       - If the above doesn't take you back to the safe land of the editor, one of these should:
+"           - <TAB><ESC><ESC>
+"           - <C-TAB>
+"
+"  Notes
+"  - list of IntelliJ actions can be viewed with command :actionlist
+"  - Tool windows can be opened through RecentFiles, or ctrl+tab
+"  - set "left margin to distraction free mode" to 0
 
 "" Grab standard settings
 source ~/AppData/Local/nvim/.vimrc
 
-"" Move selected region up/down
+" intelligently join things like strings, if statements, comments, chain methods, ignoring unnecessary braces
+set ideajoin
+" Genuinely the most important option. Get rid of annoying bell when a command doesn't work (you should know it doesn't work when it doesn't work).
+set visualbell
+" Enter whatever vim mode one was in before a refactor
+set idearefactormode=keep
+
+"" Navigation
 vnoremap J :action MoveStatementDown<CR>
 vnoremap K :action MoveStatementUp<CR>
+nnoremap [m :action MethodUp<CR>
+vnoremap [m :action MethodUp<CR>
+nnoremap ]m :action MethodDown<CR>
+vnoremap ]m :action MethodDown<CR>
+nnoremap g; :action JumpToLastChange<CR>
+nnoremap g, :action JumpToNextChange<CR>
 
-"" Refactor
-nnoremap <leader>rc :action ReformatCode<CR>
-vnoremap <leader>rc :action ReformatCode<CR>
+"" Text Editing
+nnoremap == :action ReformatCode<CR>
+vnoremap == :action ReformatCode<CR>
 nnoremap <leader>rw :action RenameElement<CR>
+nnoremap <leader>rr :action Refactorings.QuickListPopupAction<CR>
+nnoremap <leader>rg :action Generate<CR>
+" indentation
+vnoremap < <gv
+vnoremap > >gv
+nnoremap <C-S-f> :action Replace<CR>
+vnoremap <C-S-f> :action Replace<CR>
 
 "" Quick fix hot keys
 nnoremap <C-k> :action GotoPreviousError<CR>
@@ -48,6 +97,7 @@ nnoremap <leader>fn :action NewFile<CR>
 nnoremap <leader>fp :action SelectInProjectView<CR>
 nnoremap <leader>? :action RecentFiles<CR>
 nnoremap <leader><space> :action RecentFiles<CR>
+" Delete file (great for scratch files): ShowNavBar shortcut + select file + delete
 
 "" Editors/Windows
 nnoremap <C-w><C-q> :action CloseEditor<CR>
@@ -69,12 +119,16 @@ nnoremap zO :action ExpandAllRegions<CR>
 nnoremap za :action CollapseSelection<CR>
 
 "" Search
+nnoremap <C-f> :action Find<CR>
+vnoremap <C-f> :action Find<CR>
 nnoremap <leader>sg :action SearchEverywhere<CR>
 nnoremap <leader>su :action FindUsages<CR>
-nnoremap <leader>ss :action ActivateFindToolWindow<CR>
+nnoremap <leader>ss :action GotoSymbol<CR>
 nnoremap n nzz:action ExpandRegion<CR>
 nnoremap N Nzz:action ExpandRegion<CR>
-nnoremap <leader>sw :action CheckinProject<CR>
+" Modification of default keymaps, searches for specific element tied to word, instead of word itself
+nnoremap # :action GotoPrevElementUnderCaretUsage<CR>
+nnoremap * :action GotoNextElementUnderCaretUsage<CR>
 
 "" Comments
 nnoremap <C-/> :action CommentByLineComment<CR>
@@ -95,7 +149,7 @@ nnoremap <leader>bs :action Android.SyncProject<CR>
 nnoremap <leader>rad :action XDebugger.AttachToProcess<CR>
 nnoremap \\b :action ToggleLineBreakpoint<CR>
 
-"" Changelist
+"" Change history
 nnoremap g; :action JumpToLastChange<CR>
 nnoremap g, :action JumpToNextChange<CR>
 
@@ -126,12 +180,20 @@ inoremap <C-F11> :action Stop<CR>
 inoremap <F12> :action StepOver<CR>
 
 
-Plug 'machakann/vim-highlightedyank'
+" +++ DIRT NASTY LOW SHORTCUTS TO CHANGE YOUR LIFE +++
+" Quick list of recent locations
+nnoremap <leader>vl :action RecentLocations<CR>
+" Shows changes to current file with timestamps & diffs
+nnoremap <leader>vh :action LocalHistory.ShowHistory<CR>
+" Introspection on where calls to a function might come from
+nnoremap <leader>vc :action CallHierarchy<CR>
+" Easily navigate to other files somewhere in the chain of the current file's directory
+nnoremap <leader>vn :action ShowNavBar<CR>
+" Shows the structure of the current file in a shorter digestible list (classes/methods)
+nnoremap <leader>vs :action FileStructurePopup<CR>
+" Jumps to last tool window
+nnoremap <leader>vt :action JumpToLastWindow<CR>
+" Create a scratch file that exists only in the local IDE and not in your project
+nnoremap <leader>ns :action NewScratchFile<CR>
 
-" Standard Keymaps
-" ctrl+` for changing viewing modes
-"
-" Notes
-" list of IntelliJ actions can be viewed with command :actionlist
-" Tool windows can be opened through RecentFiles, or ctrl+tab
-" set "left margin to distraction free mode" to 0
+Plug 'machakann/vim-highlightedyank'

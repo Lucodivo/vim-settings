@@ -4,6 +4,8 @@ set relativenumber
 set nohlsearch
 set incsearch
 set showcmd
+set ignorecase
+set smartcase
 
 set tabstop=2
 set shiftwidth=0   " If 0, then uses value of 'tabstop'
@@ -24,7 +26,7 @@ nnoremap <C-u> <C-u>zz
 nnoremap <C-d> <C-d>zz
 
 "" paste over selection without adding replaced text to yank buffer
-xnoremap <leader>p "_dp
+xnoremap <leader>p pgvy
 
 "" yank to system clipboard
 nnoremap <leader>y "+y
@@ -38,3 +40,5 @@ vnoremap <leader>d "_d
 "" delete character to blackhole register
 nnoremap x "_x
 nnoremap <leader>x x
+
+nnoremap <SPACE> <Nop>
