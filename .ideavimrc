@@ -1,5 +1,5 @@
 " ====== Instructions =====
-" In IntelliJ 
+" In IntelliJ
 "   go to Settings > Plugins > Marketplace
 "   install IdeaVim from Marketplace
 "   click IdeaVim 'V' in the lower right corner of the IDE
@@ -36,11 +36,13 @@
 "       - If the above doesn't take you back to the safe land of the editor, one of these should:
 "           - <TAB><ESC><ESC>
 "           - <C-TAB>
+"  - <C-F4> - close current window (works great for diff windows that won't go away!!)
 "
 "  Notes
 "  - list of IntelliJ actions can be viewed with command :actionlist
 "  - Tool windows can be opened through RecentFiles, or ctrl+tab
 "  - set "left margin to distraction free mode" to 0
+"  - my preferred theme is called "MyGruvbox"
 
 "" Grab standard settings
 source ~/AppData/Local/nvim/.vimrc
@@ -52,6 +54,29 @@ set visualbell
 " Enter whatever vim mode one was in before a refactor
 set idearefactormode=keep
 
+sethandler <C--> a:vim
+sethandler <C-/> a:vim
+sethandler <C-\> a:vim
+sethandler <C-[> a:vim
+sethandler <C-]> a:vim
+sethandler <C-2> a:vim
+sethandler <C-6> a:vim
+sethandler <C-=> a:vim
+sethandler <C-D> a:vim
+sethandler <C-J> a:vim
+sethandler <C-K> a:vim
+sethandler <C-F> a:vim
+sethandler <C-G> a:vim
+sethandler <C-H> a:vim
+sethandler <C-I> a:vim
+sethandler <F8> a:vim
+sethandler <F9> a:vim
+sethandler <F10> a:vim
+sethandler <F11> a:vim
+sethandler <F12> a:vim
+sethandler <C-F10> a:vim
+sethandler <C-F11> a:vim
+
 "" Navigation
 vnoremap J :action MoveStatementDown<CR>
 vnoremap K :action MoveStatementUp<CR>
@@ -61,6 +86,8 @@ nnoremap ]m :action MethodDown<CR>
 vnoremap ]m :action MethodDown<CR>
 nnoremap g; :action JumpToLastChange<CR>
 nnoremap g, :action JumpToNextChange<CR>
+nnoremap <C-S-J> :action VcsShowNextChangeMarker<CR>
+nnoremap <C-S-K> :action VcsShowPrevChangeMarker<CR>
 
 "" Text Editing
 nnoremap == :action ReformatCode<CR>
@@ -95,13 +122,12 @@ nnoremap <leader>fo :action OpenFile<CR>
 nnoremap <leader>fr :action RenameFile<CR>
 nnoremap <leader>fn :action NewFile<CR>
 nnoremap <leader>fp :action SelectInProjectView<CR>
-nnoremap <leader>? :action RecentFiles<CR>
 nnoremap <leader><space> :action RecentFiles<CR>
 " Delete file (great for scratch files): ShowNavBar shortcut + select file + delete
 
 "" Editors/Windows
-nnoremap <C-w><C-q> :action CloseEditor<CR>
 nnoremap <C-w>q :action CloseEditor<CR>
+nnoremap <C-w>Q :action CloseAllEditors<CR>
 nnoremap <C-w>H :action MoveEditorToOppositeTabGroup<CR>
 nnoremap <C-w>J :action MoveEditorToOppositeTabGroup<CR>
 nnoremap <C-w>K :action MoveEditorToOppositeTabGroup<CR>
@@ -195,5 +221,12 @@ nnoremap <leader>vs :action FileStructurePopup<CR>
 nnoremap <leader>vt :action JumpToLastWindow<CR>
 " Create a scratch file that exists only in the local IDE and not in your project
 nnoremap <leader>ns :action NewScratchFile<CR>
+" Search list of potential IDE actions
+nnoremap <leader>va :action GotoAction<CR>
+vnoremap <leader>va :action GotoAction<CR>
+" View local changes since last commit and choose diff to display
+nnoremap <leader>vg :action Vcs.QuickListPopupAction<CR>
+nnoremap <leader>vG :action Vcs.Show.Local.Changes<CR>
+
 
 Plug 'machakann/vim-highlightedyank'
