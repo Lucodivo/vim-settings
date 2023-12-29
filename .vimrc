@@ -25,6 +25,13 @@ nnoremap J mzJ`z
 nnoremap <C-u> <C-u>zz
 nnoremap <C-d> <C-d>zz
 
+nnoremap <C-down> gj
+vnoremap <C-down> gj
+inoremap <C-down> <C-o>gj
+nnoremap <C-up> gk
+vnoremap <C-up> gk
+inoremap <C-up> <C-o>gk
+
 "" paste over selection without adding replaced text to yank buffer
 xnoremap <leader>p pgvy
 
