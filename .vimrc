@@ -32,6 +32,9 @@ nnoremap <C-up> gk
 vnoremap <C-up> gk
 inoremap <C-up> <C-o>gk
 
+vnoremap < <gv
+vnoremap > >gv
+
 "" paste over selection without adding replaced text to yank buffer
 xnoremap <leader>p pgvy
 
