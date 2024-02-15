@@ -166,6 +166,8 @@ vnoremap <C-f> :action Find<CR>
 nnoremap <leader>sg :action SearchEverywhere<CR>
 nnoremap <leader>su :action FindUsages<CR>
 nnoremap <leader>ss :action GotoSymbol<CR>
+nnoremap <leader>sa :action GotoAction<CR>
+vnoremap <leader>sa :action GotoAction<CR>
 nnoremap n nzz:action ExpandRegion<CR>
 nnoremap N Nzz:action ExpandRegion<CR>
 " Modification of default keymaps, searches for specific element tied to word, instead of word itself
@@ -187,6 +189,9 @@ noremap <C-[> <ESC>
 nnoremap <leader>bb :action MakeGradleProject<CR>
 nnoremap <leader>br :action RebuildGradleProject<CR>
 nnoremap <leader>bc :action CleanGradleProject<CR>
+"" nnoremap <leader>bb :action Build<CR>
+"" nnoremap <leader>br :action Rebuild<CR>
+"" nnoremap <leader>bc :action Clean<CR>
 nnoremap <leader>bs :action Android.SyncProject<CR>
 nnoremap <leader>rad :action XDebugger.AttachToProcess<CR>
 nnoremap \\b :action ToggleLineBreakpoint<CR>
@@ -222,7 +227,6 @@ inoremap <F11> :action StepOut<CR>
 inoremap <C-F11> :action Stop<CR>
 inoremap <F12> :action StepOver<CR>
 
-
 " +++ DIRT NASTY LOW SHORTCUTS TO CHANGE YOUR LIFE +++
 " Quick list of recent locations
 nnoremap <leader>vl :action RecentLocations<CR>
@@ -238,12 +242,8 @@ nnoremap <leader>vs :action FileStructurePopup<CR>
 nnoremap <leader>vt :action JumpToLastWindow<CR>
 " Create a scratch file that exists only in the local IDE and not in your project
 nnoremap <leader>ns :action NewScratchFile<CR>
-" Search list of potential IDE actions
-nnoremap <leader>va :action GotoAction<CR>
-vnoremap <leader>va :action GotoAction<CR>
 " View local changes since last commit and choose diff to display
 nnoremap <leader>vg :action Vcs.QuickListPopupAction<CR>
 nnoremap <leader>vG :action Vcs.Show.Local.Changes<CR>
-
 
 Plug 'machakann/vim-highlightedyank'
