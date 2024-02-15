@@ -62,13 +62,28 @@ sethandler <C-]> a:vim
 sethandler <C-2> a:vim
 sethandler <C-6> a:vim
 sethandler <C-=> a:vim
+sethandler <C-A> a:vim
+sethandler <C-B> a:vim
+sethandler <C-C> a:vim
 sethandler <C-D> a:vim
-sethandler <C-J> a:vim
-sethandler <C-K> a:vim
+sethandler <C-E> a:vim
 sethandler <C-F> a:vim
 sethandler <C-G> a:vim
 sethandler <C-H> a:vim
 sethandler <C-I> a:vim
+sethandler <C-J> a:vim
+sethandler <C-K> a:vim
+sethandler <C-L> a:vim
+sethandler <C-N> a:vim
+sethandler <C-O> a:vim
+sethandler <C-P> a:vim
+sethandler <C-Q> a:vim
+sethandler <C-T> a:vim
+sethandler <C-U> a:vim
+sethandler <C-V> a:vim
+sethandler <C-W> a:vim
+sethandler <C-X> a:vim
+sethandler <C-Y> a:vim
 sethandler <F8> a:vim
 sethandler <F9> a:vim
 sethandler <F10> a:vim
@@ -127,6 +142,7 @@ nnoremap <leader><space> :action RecentFiles<CR>
 
 "" Editors/Windows
 nnoremap <C-w>q :action CloseEditor<CR>
+nnoremap <C-w><C-q> :action CloseEditor<CR>
 nnoremap <C-w>Q :action CloseAllEditors<CR>
 nnoremap <C-w>H :action MoveEditorToOppositeTabGroup<CR>
 nnoremap <C-w>J :action MoveEditorToOppositeTabGroup<CR>
@@ -150,6 +166,8 @@ vnoremap <C-f> :action Find<CR>
 nnoremap <leader>sg :action SearchEverywhere<CR>
 nnoremap <leader>su :action FindUsages<CR>
 nnoremap <leader>ss :action GotoSymbol<CR>
+nnoremap <leader>sa :action GotoAction<CR>
+vnoremap <leader>sa :action GotoAction<CR>
 nnoremap n nzz:action ExpandRegion<CR>
 nnoremap N Nzz:action ExpandRegion<CR>
 " Modification of default keymaps, searches for specific element tied to word, instead of word itself
@@ -171,9 +189,13 @@ noremap <C-[> <ESC>
 nnoremap <leader>bb :action MakeGradleProject<CR>
 nnoremap <leader>br :action RebuildGradleProject<CR>
 nnoremap <leader>bc :action CleanGradleProject<CR>
+"" nnoremap <leader>bb :action Build<CR>
+"" nnoremap <leader>br :action Rebuild<CR>
+"" nnoremap <leader>bc :action Clean<CR>
 nnoremap <leader>bs :action Android.SyncProject<CR>
 nnoremap <leader>rad :action XDebugger.AttachToProcess<CR>
 nnoremap \\b :action ToggleLineBreakpoint<CR>
+nnoremap \\B :action XDebugger.MuteBreakpoints<CR>
 
 "" Change history
 nnoremap g; :action JumpToLastChange<CR>
@@ -205,7 +227,6 @@ inoremap <F11> :action StepOut<CR>
 inoremap <C-F11> :action Stop<CR>
 inoremap <F12> :action StepOver<CR>
 
-
 " +++ DIRT NASTY LOW SHORTCUTS TO CHANGE YOUR LIFE +++
 " Quick list of recent locations
 nnoremap <leader>vl :action RecentLocations<CR>
@@ -221,9 +242,6 @@ nnoremap <leader>vs :action FileStructurePopup<CR>
 nnoremap <leader>vt :action JumpToLastWindow<CR>
 " Create a scratch file that exists only in the local IDE and not in your project
 nnoremap <leader>ns :action NewScratchFile<CR>
-" Search list of potential IDE actions
-nnoremap <leader>va :action GotoAction<CR>
-vnoremap <leader>va :action GotoAction<CR>
 " View local changes since last commit and choose diff to display
 nnoremap <leader>vg :action Vcs.QuickListPopupAction<CR>
 nnoremap <leader>vG :action Vcs.Show.Local.Changes<CR>
