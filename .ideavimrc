@@ -226,6 +226,8 @@ inoremap <C-F10> :action Resume<CR>
 inoremap <F11> :action StepOut<CR>
 inoremap <C-F11> :action Stop<CR>
 inoremap <F12> :action StepOver<CR>
+nnoremap <leader>vd :action CIDR.Debugger.DisassembleFrame<CR>
+nnoremap <leader>vb :action ShowKotlinBytecode<CR>
 
 " +++ DIRT NASTY LOW SHORTCUTS TO CHANGE YOUR LIFE +++
 " Quick list of recent locations
