@@ -232,6 +232,9 @@ inoremap <C-F11> :action Stop<CR>
 inoremap <F12> :action StepOver<CR>
 nnoremap <leader>vd :action CIDR.Debugger.DisassembleFrame<CR>
 nnoremap <leader>vb :action ShowKotlinBytecode<CR>
+" RunClass: runs tests or activities
+nnoremap <C-F8> :action RunClass<CR>
+nnoremap <leader>rt :action RunClass<CR>
 
 " +++ DIRT NASTY LOW SHORTCUTS TO CHANGE YOUR LIFE +++
 " Quick list of recent locations
