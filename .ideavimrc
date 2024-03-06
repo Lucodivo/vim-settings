@@ -13,7 +13,7 @@
 "source ~/AppData/Local/nvim/.ideavimrc
 "" Shortcut to edit our .ideavimrc settings in the source control
 "nnoremap \ve :e ~/AppData/Local/nvim/.ideavimrc<CR>
-"" Shortcut to edit *THIS* .ideavimrc file (which is separate from above two files)
+"" Shortcut to edit *THIS* .ideavimrc file (which is separate from the file mentioned above)
 "nnoremap \va :e ~/.ideavimrc<CR>
 "" Shortcut to reload .ideavimrc settings (only works while *THIS* file is open and in focus)
 "nnoremap \vr :action IdeaVim.ReloadVimRc.reload<CR>
@@ -131,7 +131,7 @@ nnoremap <leader>_ :action TogglePresentationMode<CR>
 
 "" Files
 "" project files
-nnoremap <leader>fs :action GotoFile<CR>
+nnoremap <leader>sf :action GotoFile<CR>
 "" *any* file
 nnoremap <leader>fo :action OpenFile<CR>
 nnoremap <leader>fr :action RenameFile<CR>
@@ -173,6 +173,10 @@ nnoremap N Nzz:action ExpandRegion<CR>
 " Modification of default keymaps, searches for specific element tied to word, instead of word itself
 nnoremap # :action GotoPrevElementUnderCaretUsage<CR>
 nnoremap * :action GotoNextElementUnderCaretUsage<CR>
+
+"" Scratch
+nnoremap <leader>sn :action NewScratchFile<CR>
+nnoremap <leader>sr :action Kotlin.RunScratch<CR>
 
 "" Comments
 nnoremap <C-/> :action CommentByLineComment<CR>
@@ -242,8 +246,9 @@ nnoremap <leader>vn :action ShowNavBar<CR>
 nnoremap <leader>vs :action FileStructurePopup<CR>
 " Jumps to last tool window
 nnoremap <leader>vt :action JumpToLastWindow<CR>
-" Create a scratch file that exists only in the local IDE and not in your project
-nnoremap <leader>ns :action NewScratchFile<CR>
+" Search list of potential IDE actions
+nnoremap <leader>sa :action GotoAction<CR>
+vnoremap <leader>sa :action GotoAction<CR>
 " View local changes since last commit and choose diff to display
 nnoremap <leader>vg :action Vcs.QuickListPopupAction<CR>
 nnoremap <leader>vG :action Vcs.Show.Local.Changes<CR>
