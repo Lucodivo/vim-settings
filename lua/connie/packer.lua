@@ -56,4 +56,12 @@ return require('packer').startup(function(use)
   use 'hrsh7th/cmp-buffer'                            
   use 'hrsh7th/vim-vsnip'                             
 
+  use({
+	"Pocco81/auto-save.nvim",
+	config = function()
+		 require("auto-save").setup{
+       trigger_events = {"InsertLeave", "TextChanged", "FocusGained", "FocusLost"}
+     } end
+  })
+
 end)

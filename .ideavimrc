@@ -110,6 +110,7 @@ vnoremap == :action ReformatCode<CR>
 nnoremap <leader>rw :action RenameElement<CR>
 nnoremap <leader>rr :action Refactorings.QuickListPopupAction<CR>
 nnoremap <leader>rg :action Generate<CR>
+nnoremap <leader>rs :action ChangeSignature<CR>
 " indentation
 vnoremap < <gv
 vnoremap > >gv
@@ -173,6 +174,7 @@ nnoremap N Nzz:action ExpandRegion<CR>
 " Modification of default keymaps, searches for specific element tied to word, instead of word itself
 nnoremap # :action GotoPrevElementUnderCaretUsage<CR>
 nnoremap * :action GotoNextElementUnderCaretUsage<CR>
+nnoremap \\c :action CIDR.Lang.SwitchHeaderSource<CR>
 
 "" Scratch
 nnoremap <leader>sn :action NewScratchFile<CR>
@@ -235,6 +237,7 @@ nnoremap <leader>vb :action ShowKotlinBytecode<CR>
 " RunClass: runs tests or activities
 nnoremap <C-F8> :action RunClass<CR>
 nnoremap <leader>rt :action RunClass<CR>
+nnoremap <leader>dt :action DebugClass<CR>
 
 " +++ DIRT NASTY LOW SHORTCUTS TO CHANGE YOUR LIFE +++
 " Quick list of recent locations
