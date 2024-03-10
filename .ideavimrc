@@ -111,6 +111,7 @@ nnoremap <leader>rw :action RenameElement<CR>
 nnoremap <leader>rr :action Refactorings.QuickListPopupAction<CR>
 nnoremap <leader>rg :action Generate<CR>
 nnoremap <leader>rs :action ChangeSignature<CR>
+nnoremap <leader>sd :action SafeDelete<CR>
 " indentation
 vnoremap < <gv
 vnoremap > >gv
@@ -198,6 +199,8 @@ nnoremap <leader>bc :action CleanGradleProject<CR>
 "" nnoremap <leader>bb :action Build<CR>
 "" nnoremap <leader>br :action Rebuild<CR>
 "" nnoremap <leader>bc :action Clean<CR>
+nnoremap <leader>bv :action SelectBuildVariant<CR>
+" <F2> is used to select pulldown menu when selecting build variant (<C-F4> to close)
 nnoremap <leader>bs :action Android.SyncProject<CR>
 nnoremap <leader>rad :action XDebugger.AttachToProcess<CR>
 nnoremap \\b :action ToggleLineBreakpoint<CR>
