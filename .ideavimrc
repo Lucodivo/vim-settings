@@ -130,10 +130,13 @@ nnoremap <leader>l :action ChangeToolWindowLayout<CR>
 nnoremap <leader>L :action StoreNewLayout<CR>
 nnoremap <leader>- :action ToggleZenMode<CR>
 nnoremap <leader>_ :action TogglePresentationMode<CR>
+nnoremap \\t :action ActivateTerminalToolWindow<CR>
 
 "" Files
 "" project files
 nnoremap <leader>sf :action GotoFile<CR>
+nnoremap <leader>pf :action SelectIn<CR>
+nnoremap <leader>pv :action GotoFile<CR>
 "" *any* file
 nnoremap <leader>fo :action OpenFile<CR>
 nnoremap <leader>fr :action RenameFile<CR>
@@ -204,7 +207,8 @@ nnoremap <leader>bv :action SelectBuildVariant<CR>
 nnoremap <leader>bs :action Android.SyncProject<CR>
 nnoremap <leader>rad :action XDebugger.AttachToProcess<CR>
 nnoremap \\b :action ToggleLineBreakpoint<CR>
-nnoremap \\B :action XDebugger.MuteBreakpoints<CR>
+nnoremap \\mb :action XDebugger.MuteBreakpoints<CR>
+nnoremap \\rb :action Debugger.RemoveAllBreakpoints<CR>
 
 "" Change history
 nnoremap g; :action JumpToLastChange<CR>

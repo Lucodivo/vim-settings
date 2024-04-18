@@ -1,0 +1,5 @@
+// unstage file
+git reset {file}
+
+// ammend (no commit message update)
+git commit --amend --no-edit

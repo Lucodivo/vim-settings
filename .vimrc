@@ -14,6 +14,7 @@ set scrolloff=8
 
 let mapleader=" "
 
+"" NOTE: !!! Register 'x' is reserved for macros !!!!
 "" map - map a new key pattern to an existing key pattern
 "" noremap - ^ no recursion, new key patterns are only matched with standard vim motions
 "" nnoremap - ^ new key pattern is only valid for normal mode
@@ -27,10 +28,10 @@ nnoremap <C-d> <C-d>zz
 
 nnoremap <C-down> gj
 vnoremap <C-down> gj
-inoremap <C-down> <C-o>gj
 nnoremap <C-up> gk
 vnoremap <C-up> gk
-inoremap <C-up> <C-o>gk
+inoremap <Shift-up> up
+inoremap <shift-down> down
 
 vnoremap < <gv
 vnoremap > >gv
@@ -42,6 +43,7 @@ xnoremap <leader>p pgvy
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
 nnoremap <leader>Y "+Y
+nnoremap <leader>ya mxggVGy`x
 
 "" delete text to blackhole register
 nnoremap <leader>d "_d
