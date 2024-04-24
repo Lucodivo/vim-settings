@@ -141,6 +141,7 @@ nnoremap <leader>pv :action GotoFile<CR>
 nnoremap <leader>fo :action OpenFile<CR>
 nnoremap <leader>fr :action RenameFile<CR>
 nnoremap <leader>fn :action NewFile<CR>
+nnoremap <leader>kn :action Kotlin.NewFile<CR>
 nnoremap <leader>fp :action SelectInProjectView<CR>
 nnoremap <leader><space> :action RecentFiles<CR>
 " Delete file (great for scratch files): ShowNavBar shortcut + select file + delete
@@ -259,6 +260,7 @@ nnoremap <leader>vn :action ShowNavBar<CR>
 nnoremap <leader>vs :action FileStructurePopup<CR>
 " Jumps to last tool window
 nnoremap <leader>vt :action JumpToLastWindow<CR>
+nnoremap <leader>ot :action ActivateTerminalToolWindow<CR>
 " Search list of potential IDE actions
 nnoremap <leader>sa :action GotoAction<CR>
 vnoremap <leader>sa :action GotoAction<CR>
