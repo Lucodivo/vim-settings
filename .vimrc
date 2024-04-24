@@ -54,3 +54,5 @@ nnoremap x "_x
 nnoremap <leader>x x
 
 nnoremap <SPACE> <Nop>
+
+nnoremap <leader>vm :marks<CR>
