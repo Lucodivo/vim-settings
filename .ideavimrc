@@ -110,9 +110,13 @@ nnoremap == :action ReformatCode<CR>
 vnoremap == :action ReformatCode<CR>
 nnoremap <leader>rw :action RenameElement<CR>
 nnoremap <leader>rr :action Refactorings.QuickListPopupAction<CR>
+vnoremap <leader>rr :action Refactorings.QuickListPopupAction<CR>
 nnoremap <leader>rg :action Generate<CR>
 nnoremap <leader>rs :action ChangeSignature<CR>
 nnoremap <leader>sd :action SafeDelete<CR>
+nnoremap <leader>ms :action Move<CR>
+vnoremap <leader>ms :action Move<CR>
+nnoremap <leader>oi :action OptimizeImports<CR>
 " indentation
 vnoremap < <gv
 vnoremap > >gv
