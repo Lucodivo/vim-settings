@@ -1,0 +1,18 @@
+-- Windows --
+File Explorer: Win+E
+Show Dekstop: Win+D
+Task View: Win+Tab
+New Dekstop: Win+Ctrl+D
+Prev/Next Desktop: Win+Ctrl+[Left/Right]
+Close Desktop: Win+Ctrl+F4
+Power User Menu: Win+X
+Screenshot Window: Alt+PrtScn
+Screenshot Autosave: Win+PrtScn
+Fullscreen: F11
+
+-- Browsers --
+Refresh: Ctrl+R / F5
+Hard Refresh: Ctrl+F5
+Downloads: Ctrl+J
+History: Ctrl+H
+Prev/Next: Alt+[Left/Right]

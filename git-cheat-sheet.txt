@@ -1,5 +1,50 @@
-// unstage file
-git reset {file}
+// new git repo in dir
+git init
 
-// ammend (no commit message update)
+// clone git repo in dir
+git clone [url]
+
+// list changes
+git status
+
+// commit history
+git log
+
+// unstage
+git reset {file}
+git reset .
+
+// view branches
+git branch
+
+// create new branch off current branch
+git branch [branch-name]
+
+// switch to another branch
+git checkout [branch-name]
+
+// merge another branch into current branch
+git merge [branch]
+
+// remove file from being tracked in git repo
+git rm [file]
+
+// update branch from remote
+git pull
+
+// stash
+git stash
+git stash --include-untracked
+git stash list
+git stash pop
+
+// commit
+git commit -m "commit message"
 git commit --amend --no-edit
+
+// push
+git push
+git push -f
+
+// remove changes to file
+git checkout HEAD -- some-file.txt

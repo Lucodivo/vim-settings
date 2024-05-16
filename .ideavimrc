@@ -104,6 +104,7 @@ nnoremap g; :action JumpToLastChange<CR>
 nnoremap g, :action JumpToNextChange<CR>
 nnoremap <C-S-J> :action VcsShowNextChangeMarker<CR>
 nnoremap <C-S-K> :action VcsShowPrevChangeMarker<CR>
+nnoremap <leader>i :action ShowHoverInfo<CR>
 
 "" Text Editing
 nnoremap == :action ReformatCode<CR>
