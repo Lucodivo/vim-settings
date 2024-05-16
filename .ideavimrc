@@ -163,6 +163,10 @@ nnoremap <C-w>V :action MoveTabRight<CR>
 nnoremap <C-w>S :action MoveTabDown<CR>
 nnoremap <C-=> :action EditorIncreaseFontSize<CR>
 nnoremap <C--> :action EditorDecreaseFontSize<CR>
+nnoremap <C-w>e :action TextEditorWithPreview.Layout.EditorOnly<CR>
+nnoremap <C-w>p :action TextEditorWithPreview.Layout.EditorAndPreview<CR>
+"" NOTE: PreviewOnly will remove the text editor and vim commands are no longer valid (Alt+Shift+Right or mouse to get out)
+nnoremap <C-w>P :action TextEditorWithPreview.LayoutGroup<CR>
 
 "" Regions
 nnoremap zc :action CollapseRegion<CR>
