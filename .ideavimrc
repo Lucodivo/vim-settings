@@ -105,6 +105,7 @@ nnoremap g, :action JumpToNextChange<CR>
 nnoremap <C-S-J> :action VcsShowNextChangeMarker<CR>
 nnoremap <C-S-K> :action VcsShowPrevChangeMarker<CR>
 nnoremap <leader>i :action ShowHoverInfo<CR>
+nnoremap <leader>gt :action GotoTypeDeclaration<CR>
 
 "" Text Editing
 nnoremap == :action ReformatCode<CR>
@@ -123,6 +124,8 @@ vnoremap < <gv
 vnoremap > >gv
 nnoremap <C-S-f> :action Replace<CR>
 vnoremap <C-S-f> :action Replace<CR>
+nnoremap <leader><C-R> :action Vcs.RollbackChangedLines<CR>
+vnoremap <leader><C-R> :action Vcs.RollbackChangedLines<CR>
 
 "" Quick fix hot keys
 nnoremap <C-k> :action GotoPreviousError<CR>
