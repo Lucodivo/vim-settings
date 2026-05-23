@@ -6,6 +6,7 @@ set incsearch
 set showcmd
 set ignorecase
 set smartcase
+set nowrap
 
 set tabstop=2
 set shiftwidth=0   " If 0, then uses value of 'tabstop'
@@ -56,3 +57,6 @@ nnoremap <leader>x x
 nnoremap <SPACE> <Nop>
 
 nnoremap <leader>vm :marks<CR>
+
+"" great for finding "magic numbers"
+nnoremap g0 /\d\+<CR>
