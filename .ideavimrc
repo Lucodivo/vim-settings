@@ -115,6 +115,7 @@ nnoremap <leader>rr :action Refactorings.QuickListPopupAction<CR>
 vnoremap <leader>rr :action Refactorings.QuickListPopupAction<CR>
 nnoremap <leader>rg :action Generate<CR>
 nnoremap <leader>rs :action ChangeSignature<CR>
+nnoremap <leader>ri :action Inline<CR>
 nnoremap <leader>sd :action SafeDelete<CR>
 nnoremap <leader>ms :action Move<CR>
 vnoremap <leader>ms :action Move<CR>
@@ -139,15 +140,17 @@ nnoremap <leader>l :action ChangeToolWindowLayout<CR>
 nnoremap <leader>L :action StoreNewLayout<CR>
 nnoremap <leader>- :action ToggleZenMode<CR>
 nnoremap <leader>_ :action TogglePresentationMode<CR>
-nnoremap \\t :action ActivateTerminalToolWindow<CR>
 
 "" Files
 "" project files
 nnoremap <leader>sf :action GotoFile<CR>
 nnoremap <leader>pf :action SelectIn<CR>
 nnoremap <leader>pv :action GotoFile<CR>
+nnoremap <leader>st :action TextSearchAction<CR>
 "" *any* file
 nnoremap <leader>fo :action OpenFile<CR>
+nnoremap <leader>fc :action CopyPathFromRepositoryRootProvider<CR>
+nnoremap <leader>fC :action CopyPaths<CR>
 nnoremap <leader>fr :action RenameFile<CR>
 nnoremap <leader>fn :action NewFile<CR>
 nnoremap <leader>kn :action Kotlin.NewFile<CR>
@@ -254,7 +257,8 @@ inoremap <F11> :action StepOut<CR>
 inoremap <C-F11> :action Stop<CR>
 inoremap <F12> :action StepOver<CR>
 nnoremap <leader>vd :action CIDR.Debugger.DisassembleFrame<CR>
-nnoremap <leader>vb :action ShowKotlinBytecode<CR>
+nnoremap <leader>kb :action ShowKotlinBytecode<CR>
+nnoremap <leader>vb :action ViewBreakpoints<CR>
 " RunClass: runs tests or activities
 nnoremap <C-F8> :action RunClass<CR>
 nnoremap <leader>rt :action RunClass<CR>
@@ -274,12 +278,21 @@ nnoremap <leader>vs :action FileStructurePopup<CR>
 " Jumps to last tool window
 nnoremap <leader>vt :action JumpToLastWindow<CR>
 nnoremap <leader>ot :action ActivateTerminalToolWindow<CR>
+nnoremap <leader>vi :action ActivateAppInspectionToolWindow<CR>
+nnoremap <leader>vl :action ActivateLogcatToolWindow<CR>
 " Search list of potential IDE actions
 nnoremap <leader>sa :action GotoAction<CR>
 vnoremap <leader>sa :action GotoAction<CR>
 " View local changes since last commit and choose diff to display
 nnoremap <leader>vg :action Vcs.QuickListPopupAction<CR>
 nnoremap <leader>vG :action Vcs.Show.Local.Changes<CR>
+nnoremap <leader>ip :action Inline<CR>
+
+" until diff supports vim
+" F7 - NextDiff - next diff (in file or next file)
+" Shift+F7 - PreviousDiff - previous diff (in file or prev file)
+" Ctrl + Shift + Right - Diff.NextChange - next file with diff
+" Ctrl + Shift + Left - Diff.PrevChange - prev file with diff
 
 
 Plug 'machakann/vim-highlightedyank'

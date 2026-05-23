@@ -1,4 +1,4 @@
-// new git repo in dir
+
 git init
 
 // clone git repo in dir
@@ -13,6 +13,7 @@ git log
 // unstage
 git reset {file}
 git reset .
+git reset master
 
 // diff
 git diff {file}
