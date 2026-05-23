@@ -174,6 +174,7 @@ nnoremap <C-w>e :action TextEditorWithPreview.Layout.EditorOnly<CR>
 nnoremap <C-w>p :action TextEditorWithPreview.Layout.EditorAndPreview<CR>
 "" NOTE: PreviewOnly will remove the text editor and vim commands are no longer valid (Alt+Shift+Right or mouse to get out)
 nnoremap <C-w>P :action TextEditorWithPreview.LayoutGroup<CR>
+nnoremap <leader>cw :action CloseAllUnmodifiedEditors<CR>
 
 "" Regions
 nnoremap zc :action CollapseRegion<CR>
@@ -198,7 +199,7 @@ nnoremap * :action GotoNextElementUnderCaretUsage<CR>
 nnoremap \\c :action CIDR.Lang.SwitchHeaderSource<CR>
 
 "" Scratch
-nnoremap <leader>sn :action NewScratchFile<CR>
+nnoremap <leader>sn :action NewScratchBuffer<CR>
 nnoremap <leader>sr :action Kotlin.RunScratch<CR>
 
 "" Comments
@@ -267,10 +268,11 @@ nnoremap <leader>dt :action DebugClass<CR>
 " +++ DIRT NASTY LOW SHORTCUTS TO CHANGE YOUR LIFE +++
 " Quick list of recent locations
 nnoremap <leader>vl :action RecentLocations<CR>
+nnoremap <leader>vf :action ActivateFindToolWindow<CR>
 " Shows changes to current file with timestamps & diffs
 nnoremap <leader>vh :action LocalHistory.ShowHistory<CR>
 " Introspection on where calls to a function might come from
-nnoremap <leader>vc :action CallHierarchy<CR>
+nnoremap <leader>ch :action CallHierarchy<CR>
 " Easily navigate to other files somewhere in the chain of the current file's directory
 nnoremap <leader>vn :action ShowNavBar<CR>
 " Shows the structure of the current file in a shorter digestible list (classes/methods)
@@ -283,10 +285,14 @@ nnoremap <leader>vl :action ActivateLogcatToolWindow<CR>
 " Search list of potential IDE actions
 nnoremap <leader>sa :action GotoAction<CR>
 vnoremap <leader>sa :action GotoAction<CR>
-" View local changes since last commit and choose diff to display
-nnoremap <leader>vg :action Vcs.QuickListPopupAction<CR>
-nnoremap <leader>vG :action Vcs.Show.Local.Changes<CR>
 nnoremap <leader>ip :action Inline<CR>
+nnoremap <leader>vc :action ActivateCommitToolWindow<CR>
+nnoremap <leader>vc :action ActivateCommitToolWindow<CR>
+nnoremap <leader>nc :action NextDiff<CR>
+nnoremap <leader>pc :action PrevDiff<CR>
+nnoremap <leader>oe :action Diff.OpenInEditor<CR>
+nnoremap <leader>oc :action com.anthropic.code.plugin.actions.OpenClaudeInTerminalAction<CR>
+nnoremap <leader>sc :action com.anthropic.code.plugin.actions.SendToClaudeAction<CR>
 
 " until diff supports vim
 " F7 - NextDiff - next diff (in file or next file)
